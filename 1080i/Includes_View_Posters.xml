@@ -363,17 +363,95 @@
           </include>
         </control>
         <control type="group">
-          <control type="group">
+            <!-- Display Logo -->
+          <control type="image" id="55446">
+            <top>25</top>
             <left>640</left>
-            <height>230</height>
-            <include content="Object_Info">
-              <param name="id" value="58" />
-              <param name="width" value="1654" />
-              <param name="discart" value="true" />
-              <param name="hdsd_flag" value="true" />
-              <param name="plot_height" value="0" />
-            </include>
+            <height>189</height>
+            <width>479</width>
+            <aligny>top</aligny>
+            <texture background="true">$VAR[NetflixHome_ClearLogo]</texture>
+            <animation effect="fade" start="0" end="100" time="500">Visible</animation>
+            <visible>!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(30222) + !Control.HasFocus(660)</visible>
           </control>
+
+          <!-- display plot-->
+          <control type="group">
+            <left>1175</left>
+            <height>175</height>
+            <control type="textbox">
+                <visible>Skin.HasSetting(DisableNetflixView)</visible>
+                <label fallback="19055">$VAR[Label_Plot]</label>
+                <height>$PARAM[plot_height]</height>
+                <aligny>top</aligny>
+                <textcolor>main_fg_70</textcolor>
+                <font>font_plotbox</font>
+            </control>
+          </control>
+
+        <!-- display media info-->
+          <control type="group">
+            <left>1300</left>
+            <top>840</top>
+            <height>230</height>
+            <control type="label">
+                <width>auto</width>
+                <label>$VAR[Label_ShowCase_InfoLine]</label>
+                <height>40</height>
+                <aligny>top</aligny>
+                <textcolor>$VAR[ColorHighlight]</textcolor>
+                <font>font_small</font>
+            </control>
+          </control>
+
+        <!-- display ratings-->
+        <control type="group">
+            <left>650</left>
+            <top>160</top>
+            <height>230</height>
+
+            <control type="group">
+                <height>80</height>
+                <left>0</left>
+                <right>0</right>
+                <control type="group">
+                    <visible>![Skin.HasSetting(DisableInfoRatings) + !Window.IsVisible(DialogVideoInfo.xml)] | [!Container.Content(movies) + !Container.Content(episodes)]</visible>
+                    <!-- hide stars
+                    <control type="group">
+                        <left>-16</left>
+                        <include>Object_StarRating</include>
+                        <visible>String.IsEmpty(ListItem.UserRating)</visible>
+                        <visible>!Skin.HasSetting(DisableStarRating)</visible>
+                    </control>
+                    -->
+                    <control type="group">
+                        <visible>Skin.HasSetting(DisableNetflixView)</visible>
+                        <top>30</top>
+                        <width>$PARAM[width]</width>
+                        <animation effect="slide" end="-256" condition="Skin.HasSetting(DisableStarRating)">Conditional</animation>
+                        <include content="Object_Ratings">
+                            <param name="directory" value="monochrome" />
+                            <param name="align" value="right" />
+                            <param name="width" value="700" />
+                            <param name="rottentomatoes" value="true" />
+                            <param name="imdbvotes" value="false" />
+                            <param name="usermeter" value="false" />
+                            <param name="imdb" value="true" />
+                            <param name="tmdb" value="true" />
+                            <param name="metacritic" value="true" />
+                            <param name="oscars" value="true" />
+                            <param name="top250" value="false" />
+                            <param name="plot" value="false" />
+                            <param name="studio" value="false" />
+                        </include>
+                    </control>
+                </control>
+            </control>
+
+        </control>
+         
+
+         <!-- display whatevs-->
           <control type="group">
             <left>640</left>
             <right>-40</right>
@@ -399,6 +477,7 @@
             <font>font_plotbox</font>
           </control>
         </control>
+
       </control>
       <include>View_Library_Poster</include>
     </control>
