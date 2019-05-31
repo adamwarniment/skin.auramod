@@ -284,7 +284,7 @@
     <!-- new post mid size for seasons view -->
     <include name="View_Library_Poster_Mid">
         <control type="group">
-            <left>118</left>
+            <left>102</left>
             <bottom>view_pad</bottom>
             <top>455</top>
             <visible>![[[Container.Content(musicvideos) | Container.Content(images) | Container.Content(artists) | Container.Content(albums) | Container.Content(addons) | Container.Content(songs) | [Container.Content(files) + [Window.IsVisible(MyMusicNav.xml) | Window.IsVisible(MyPics.xml)]]] + !Window.IsVisible(MyPlaylist.xml)] | [Window.IsVisible(MyPlaylist.xml) + String.IsEqual(ListItem.DBType,song)]]</visible>
