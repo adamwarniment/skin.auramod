@@ -366,7 +366,7 @@
             <!-- Display Logo -->
           <control type="image" id="55446">
             <top>25</top>
-            <left>640</left>
+            <left>655</left>
             <height>189</height>
             <width>479</width>
             <aligny>top</aligny>
@@ -375,12 +375,26 @@
             <visible>!Control.HasFocus(300) + !Control.HasFocus(302) + !Control.HasFocus(30222) + !Control.HasFocus(660)</visible>
           </control>
 
+          <!-- display tagline-->
+          <control type="group">
+            <left>1175</left>
+            <height>50</height>
+            <top>-20</top>
+            <control type="textbox">
+                <label fallback="19055">$VAR[Label_Netflix_Tagline]</label>
+                <aligny>top</aligny>
+                <textcolor>white</textcolor>
+                <font>font_plotbox</font>
+            </control>
+          </control>
+
+
           <!-- display plot-->
           <control type="group">
             <left>1175</left>
-            <height>175</height>
+            <height>170</height>
+            <top>30</top>
             <control type="textbox">
-                <visible>Skin.HasSetting(DisableNetflixView)</visible>
                 <label fallback="19055">$VAR[Label_Plot]</label>
                 <height>$PARAM[plot_height]</height>
                 <aligny>top</aligny>
@@ -391,7 +405,7 @@
 
         <!-- display media info-->
           <control type="group">
-            <left>1300</left>
+            <left>1280</left>
             <top>840</top>
             <height>230</height>
             <control type="label">
@@ -407,25 +421,22 @@
         <!-- display ratings-->
         <control type="group">
             <left>650</left>
-            <top>160</top>
+            <top>170</top>
             <height>230</height>
 
             <control type="group">
                 <height>80</height>
                 <left>0</left>
                 <right>0</right>
-                <control type="group">
-                    <visible>![Skin.HasSetting(DisableInfoRatings) + !Window.IsVisible(DialogVideoInfo.xml)] | [!Container.Content(movies) + !Container.Content(episodes)]</visible>
-                    <!-- hide stars
+                <control type="group">                    
                     <control type="group">
-                        <left>-16</left>
+                        <left>510</left>
                         <include>Object_StarRating</include>
                         <visible>String.IsEmpty(ListItem.UserRating)</visible>
                         <visible>!Skin.HasSetting(DisableStarRating)</visible>
                     </control>
-                    -->
+                    
                     <control type="group">
-                        <visible>Skin.HasSetting(DisableNetflixView)</visible>
                         <top>30</top>
                         <width>$PARAM[width]</width>
                         <animation effect="slide" end="-256" condition="Skin.HasSetting(DisableStarRating)">Conditional</animation>
@@ -447,35 +458,22 @@
                     </control>
                 </control>
             </control>
-
         </control>
          
 
-         <!-- display whatevs-->
+         <!-- display mediaflags-->
           <control type="group">
             <left>640</left>
             <right>-40</right>
             <height>80</height>
             <bottom>view_pad</bottom>
-            <visible>!Skin.HasSetting(DisableInfoRatings) | ![Container.Content(movies) | Container.Content(episodes)]</visible>
             <include content="Object_Flags">
               <param name="container" value="" />
               <param name="directory" value="color" />
               <param name="align" value="left" />
             </include>
           </control>
-          <control type="label">
-            <left>640</left>
-            <height>80</height>
-            <bottom>50</bottom>
-            <align>left</align>
-            <visible>Skin.HasSetting(DisableInfoRatings) + [Container.Content(movies) | Container.Content(episodes)]</visible>
-            <label fallback="19055">$VAR[Label_Tagline]</label>
-            <height>$PARAM[plot_height]</height>
-            <aligny>top</aligny>
-            <textcolor>main_fg_70</textcolor>
-            <font>font_plotbox</font>
-          </control>
+
         </control>
 
       </control>
